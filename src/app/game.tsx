@@ -26,6 +26,7 @@ interface QuizResult {
   question: QuizData;
   userAnswer: number[];
   isCorrect: boolean;
+  timeSpent: number;
 }
 
 
@@ -109,43 +110,6 @@ const ToneMark: React.FC<ToneMarkProps> = ({ tone, size = 60, color = 'white' })
   );
 };
 
-// 正解・不正解アイコン用SVGコンポーネント
-interface ResultIconProps {
-  isCorrect: boolean;
-  size?: number;
-}
-
-const ResultIcon: React.FC<ResultIconProps> = ({ isCorrect, size = 80 }) => {
-  if (isCorrect) {
-    // 正解アイコン（緑の丸に白いチェック）
-    return (
-      <svg width={size} height={size} viewBox="0 0 100 100" className="mx-auto">
-        <circle cx="50" cy="50" r="45" fill="#10b981" stroke="#059669" strokeWidth="4" />
-        <path
-          d="M25 50 L40 65 L75 30"
-          stroke="white"
-          strokeWidth="8"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  } else {
-    // 不正解アイコン（赤い丸に白いX）
-    return (
-      <svg width={size} height={size} viewBox="0 0 100 100" className="mx-auto">
-        <circle cx="50" cy="50" r="45" fill="#ef4444" stroke="#dc2626" strokeWidth="4" />
-        <path
-          d="M30 30 L70 70 M70 30 L30 70"
-          stroke="white"
-          strokeWidth="8"
-          strokeLinecap="round"
-        />
-      </svg>
-    );
-  }
-};
 
 const TONE_OPTIONS: ToneOption[] = [
   { value: 1, label: '一声', color: 'bg-red-700' },
@@ -184,6 +148,11 @@ const ToneQuiz: React.FC = () => {
   const [celebrate, setCelebrate] = useState<boolean>(false);
   const [isGameComplete, setIsGameComplete] = useState<boolean>(false);
   const [quizResults, setQuizResults] = useState<QuizResult[]>([]);
+  
+  // タイマー関連の状態
+  const [startTime, setStartTime] = useState<number>(0);
+  const [questionStartTime, setQuestionStartTime] = useState<number>(0);
+  const [totalGameTime, setTotalGameTime] = useState<number>(0);
 
   // 紙吹雪のデータを事前生成（stateベースの種を使用）
   const confettiPieces = useMemo<ConfettiPiece[]>(() => {
@@ -239,6 +208,10 @@ const ToneQuiz: React.FC = () => {
       setCelebrate(false);
       setIsGameComplete(false);
       setQuizResults([]);
+      setTotalGameTime(0);
+      const now = Date.now();
+      setStartTime(now);
+      setQuestionStartTime(now);
       setIsSettingMode(false);
     } catch (error) {
       console.error('Error loading quiz data:', error);
@@ -249,10 +222,13 @@ const ToneQuiz: React.FC = () => {
   }, [fetchQuizData]);
 
   const loadNewQuestion = useCallback((newTotal: number = total, isSkipped: boolean = false): void => {
+    const now = Date.now();
+    const questionTime = now - questionStartTime;
+    
     // スキップされた問題を記録（ゲーム完了チェックより先に実行）
     if (isSkipped && currentQuestion) {
       setQuizResults(prev => {
-        const newResults = [...prev, { question: currentQuestion, userAnswer: [], isCorrect: false }];
+        const newResults = [...prev, { question: currentQuestion, userAnswer: [], isCorrect: false, timeSpent: questionTime }];
         return newResults;
       });
     }
@@ -274,7 +250,8 @@ const ToneQuiz: React.FC = () => {
     setUserAnswers([]);
     setShowResult(false);
     setCurrentCharIndex(0);
-  }, [remainingQuestions, currentQuestion, total, settings.questionCount]);
+    setQuestionStartTime(Date.now());
+  }, [remainingQuestions, currentQuestion, total, settings.questionCount, questionStartTime]);
 
   const handleToneSelect = (toneValue: number): void => {
     if (!currentQuestion || showResult) return;
@@ -295,6 +272,8 @@ const ToneQuiz: React.FC = () => {
     if (!currentQuestion) return;
 
     setShowResult(true);
+    const now = Date.now();
+    const questionTime = now - questionStartTime;
 
     // 全て正解かチェック
     const allCorrect = answers.every(
@@ -303,7 +282,7 @@ const ToneQuiz: React.FC = () => {
 
     // 結果を記録（正解・不正解問わず）
     setQuizResults(prev => {
-      const newResults = [...prev, { question: currentQuestion, userAnswer: answers, isCorrect: allCorrect }];
+      const newResults = [...prev, { question: currentQuestion, userAnswer: answers, isCorrect: allCorrect, timeSpent: questionTime }];
       console.log('Adding result:', currentQuestion.hanzi, 'isCorrect:', allCorrect, 'total results:', newResults.length);
       return newResults;
     });
@@ -319,7 +298,7 @@ const ToneQuiz: React.FC = () => {
     }
 
     // 次の問題へ（進行インクリメントはここで実行）
-    setTimeout(() => {
+    const proceedToNext = () => {
       const newTotal = total + 1;
       const newScore = allCorrect ? score + 1 : score;
       setTotal(newTotal);
@@ -328,12 +307,16 @@ const ToneQuiz: React.FC = () => {
       // 最後の問題の場合は直接ゲーム完了
       if (newTotal >= settings.questionCount) {
         console.log('Game completed with total results');
+        setTotalGameTime(Date.now() - startTime);
         // 結果記録の完了を待つため少し遅延
         setTimeout(() => setIsGameComplete(true), 100);
       } else {
         loadNewQuestion(newTotal, false);
       }
-    }, 2000);
+    };
+    
+    // 短時間で自動進行、またはクリックで即座に進行
+    setTimeout(proceedToNext, 800);
   };
 
   const handleUndo = (): void => {
@@ -369,7 +352,7 @@ const ToneQuiz: React.FC = () => {
                   <button
                     key={level.value}
                     onClick={() => setSettings(prev => ({ ...prev, level: level.value }))}
-                    className={`p-3 rounded-lg text-white font-semibold transition-all duration-200 hover:-translate-y-1 ${
+                    className={`p-3 rounded-lg text-white font-semibold transition-all duration-200 hover:-translate-y-1 cursor-pointer ${
                       settings.level === level.value 
                         ? level.color + ' scale-105 shadow-lg ring-4 ring-yellow-400 ring-offset-2' 
                         : level.color + ' opacity-70'
@@ -389,7 +372,7 @@ const ToneQuiz: React.FC = () => {
                   <button
                     key={count}
                     onClick={() => setSettings(prev => ({ ...prev, questionCount: count }))}
-                    className={`p-3 rounded-lg font-semibold transition-all duration-200 hover:-translate-y-1 ${
+                    className={`p-3 rounded-lg font-semibold transition-all duration-200 hover:-translate-y-1 cursor-pointer ${
                       settings.questionCount === count
                         ? 'bg-amber-800 text-white scale-105 shadow-lg ring-4 ring-yellow-400 ring-offset-2'
                         : 'bg-gray-200 text-gray-700'
@@ -412,7 +395,7 @@ const ToneQuiz: React.FC = () => {
             <button
               onClick={() => startGame(settings)}
               disabled={isLoading}
-              className="w-full py-4 bg-gradient-to-r from-red-700 to-red-800 text-white font-bold text-xl rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-200 hover:-translate-y-1 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full py-4 bg-gradient-to-r from-red-700 to-red-800 text-white font-bold text-xl rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-200 hover:-translate-y-1 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none cursor-pointer"
             >
               {isLoading ? 'データ読み込み中...' : 'ゲーム開始！'}
             </button>
@@ -425,6 +408,10 @@ const ToneQuiz: React.FC = () => {
   // ゲーム完了画面
   if (isGameComplete) {
     const accuracyRate = Math.round((score / settings.questionCount) * 100);
+    const averageTime = quizResults.length > 0 ? Math.round(quizResults.reduce((sum, result) => sum + result.timeSpent, 0) / quizResults.length) : 0;
+    const totalSeconds = Math.round(totalGameTime / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
     
     return (
       <div className="min-h-screen bg-gradient-to-br from-amber-800 via-orange-700 to-red-800 flex items-center justify-center p-5 relative overflow-hidden">
@@ -445,7 +432,17 @@ const ToneQuiz: React.FC = () => {
           <div className="bg-gradient-to-br from-red-700 to-red-800 rounded-[20px] p-6 mb-6 text-center text-white">
             <div className="text-4xl font-bold mb-4">{score}/{settings.questionCount}</div>
             <div className="text-xl font-semibold mb-2">正答率: {accuracyRate}%</div>
-            <div className="text-sm opacity-90">{settings.level} • {settings.questionCount}問</div>
+            <div className="grid grid-cols-2 gap-4 mt-4 text-sm">
+              <div>
+                <div className="opacity-80">総時間</div>
+                <div className="text-lg font-bold">{minutes}:{seconds.toString().padStart(2, '0')}</div>
+              </div>
+              <div>
+                <div className="opacity-80">平均時間</div>
+                <div className="text-lg font-bold">{(averageTime / 1000).toFixed(1)}秒</div>
+              </div>
+            </div>
+            <div className="text-sm opacity-90 mt-4">{settings.level} • {settings.questionCount}問</div>
           </div>
           
           {/* 全結果一覧 */}
@@ -472,6 +469,7 @@ const ToneQuiz: React.FC = () => {
                         </div>
                       </div>
                       <div className="text-right">
+                        <div className="text-xs text-gray-500 mb-1">{(result.timeSpent / 1000).toFixed(1)}秒</div>
                         <div className={`text-sm font-semibold mb-2 ${
                           result.isCorrect ? 'text-green-700' : 'text-red-700'
                         }`}>あなたの回答:</div>
@@ -516,14 +514,14 @@ const ToneQuiz: React.FC = () => {
           <div className="flex gap-3">
             <button
               onClick={() => setIsSettingMode(true)}
-              className="flex-1 py-3 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-500 transition-all duration-200"
+              className="flex-1 py-3 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-500 transition-all duration-200 cursor-pointer"
             >
               設定に戻る
             </button>
             <button
               onClick={() => startGame(settings)}
               disabled={isLoading}
-              className="flex-1 py-3 bg-gradient-to-r from-red-700 to-red-800 text-white font-semibold rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 py-3 bg-gradient-to-r from-red-700 to-red-800 text-white font-semibold rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
               {isLoading ? '読み込み中...' : 'もう一度プレイ'}
             </button>
@@ -560,35 +558,80 @@ const ToneQuiz: React.FC = () => {
         </div>
       )}
 
-      {/* 結果オーバーレイ */}
+      {/* 結果モーダル */}
       {showResult && (
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div
-            className={`bg-white rounded-3xl p-8 text-center shadow-2xl transform transition-all duration-500 ${
-              userAnswers.every((ans, idx) => ans === currentQuestion.tones[idx])
-                ? 'border-4 border-green-500'
-                : 'border-4 border-red-500'
-            }`}
-          >
-            <div className="mb-4">
-              <ResultIcon 
-                isCorrect={userAnswers.every((ans, idx) => ans === currentQuestion.tones[idx])}
-                size={120}
-              />
-            </div>
-            <div
-              className={`text-2xl font-bold mb-2 ${
+        <div 
+          className="fixed inset-0 flex items-center justify-center z-50 cursor-pointer"
+          onClick={() => {
+            const newTotal = total + 1;
+            const newScore = userAnswers.every((ans, idx) => ans === currentQuestion.tones[idx]) ? score + 1 : score;
+            setTotal(newTotal);
+            setScore(newScore);
+            
+            if (newTotal >= settings.questionCount) {
+              setTotalGameTime(Date.now() - startTime);
+              setTimeout(() => setIsGameComplete(true), 100);
+            } else {
+              loadNewQuestion(newTotal, false);
+            }
+          }}
+        >
+          <div className="absolute inset-0 bg-black/30" />
+          
+          <div className="relative bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-8 mx-4 max-w-md w-full shadow-2xl">
+            {/* 結果アイコンとテキスト */}
+            <div className="text-center mb-6">
+              <div className={`text-6xl mb-4 ${
                 userAnswers.every((ans, idx) => ans === currentQuestion.tones[idx])
-                  ? 'text-green-700'
-                  : 'text-red-700'
-              }`}
-            >
-              {userAnswers.every((ans, idx) => ans === currentQuestion.tones[idx])
-                ? '正解！'
-                : '不正解'}
+                  ? 'text-green-400'
+                  : 'text-red-400'
+              }`}>
+                {userAnswers.every((ans, idx) => ans === currentQuestion.tones[idx]) ? '○' : '×'}
+              </div>
+              <div className={`text-2xl font-bold ${
+                userAnswers.every((ans, idx) => ans === currentQuestion.tones[idx])
+                  ? 'text-green-100'
+                  : 'text-red-100'
+              }`}>
+                {userAnswers.every((ans, idx) => ans === currentQuestion.tones[idx]) ? '正解' : '不正解'}
+              </div>
             </div>
-            <div className="text-lg text-gray-700 font-medium">
-              {currentQuestion.hanzi} ({currentQuestion.word})
+            
+            {/* 問題情報 */}
+            <div className="text-center mb-6 border-t border-b border-white/20 py-4">
+              <div className="text-4xl font-bold text-white mb-2">
+                {currentQuestion.hanzi}
+              </div>
+              <div className="text-lg text-white/90 mb-1">
+                {currentQuestion.pinyin.join(' ')}
+              </div>
+              <div className="text-sm text-white/70">
+                {currentQuestion.word}
+              </div>
+            </div>
+            
+            {/* 不正解時の正解表示 */}
+            {!userAnswers.every((ans, idx) => ans === currentQuestion.tones[idx]) && (
+              <div className="bg-green-400/20 border border-green-400/30 rounded-lg p-4 mb-4">
+                <div className="text-sm font-semibold text-green-200 mb-3 text-center">
+                  正解の声調
+                </div>
+                <div className="flex justify-center gap-4">
+                  {currentQuestion.tones.map((tone, idx) => (
+                    <div key={idx} className="text-center">
+                      <ToneMark tone={tone} size={40} color="#4ade80" />
+                      <div className="text-xs text-green-200 mt-2">
+                        {TONE_OPTIONS.find(opt => opt.value === tone)?.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {/* 次へのヒント */}
+            <div className="text-center text-sm text-white/60">
+              クリックで次の問題へ
             </div>
           </div>
         </div>
@@ -604,7 +647,7 @@ const ToneQuiz: React.FC = () => {
           <div className="flex justify-between items-start mb-2">
             <button
               onClick={() => setIsSettingMode(true)}
-              className="px-2 py-1 text-xs font-semibold border border-gray-400 rounded bg-white text-gray-600 hover:bg-gray-50 transition-all duration-200 z-10 flex-shrink-0"
+              className="px-2 py-1 text-xs font-semibold border border-gray-400 rounded bg-white text-gray-600 hover:bg-gray-50 transition-all duration-200 z-10 flex-shrink-0 cursor-pointer"
             >
               ← 設定
             </button>
@@ -691,7 +734,7 @@ const ToneQuiz: React.FC = () => {
               </div>
               <button
                 onClick={handleUndo}
-                className="px-5 py-2 text-[0.85rem] font-semibold border-2 border-amber-800 rounded-[20px] bg-white text-amber-800 transition-all duration-200 hover:bg-amber-800 hover:text-white"
+                className="px-5 py-2 text-[0.85rem] font-semibold border-2 border-amber-800 rounded-[20px] bg-white text-amber-800 transition-all duration-200 hover:bg-amber-800 hover:text-white cursor-pointer"
               >
                 ← 取り消し
               </button>
@@ -708,7 +751,7 @@ const ToneQuiz: React.FC = () => {
                 disabled={showResult}
                 className={`px-2 py-3 rounded-lg text-white shadow-[0_4px_15px_rgba(0,0,0,0.2)] flex flex-col items-center gap-1 transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.3)] active:-translate-y-0 ${
                   option.color
-                } ${showResult ? 'opacity-50 cursor-default' : 'cursor-pointer'}`}
+                } ${showResult ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
               >
                 <ToneMark tone={option.value} size={40} />
                 <div className="text-xs font-semibold opacity-90">
@@ -727,7 +770,7 @@ const ToneQuiz: React.FC = () => {
               loadNewQuestion(newTotal, true);
             }}
             disabled={showResult}
-            className="px-6 py-2 text-sm font-semibold border-2 border-red-700 rounded-full bg-white text-red-700 transition-all duration-200 hover:bg-red-700 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-6 py-2 text-sm font-semibold border-2 border-red-700 rounded-full bg-white text-red-700 transition-all duration-200 hover:bg-red-700 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
             次の問題へ ⏭
           </button>
