@@ -22,9 +22,10 @@ interface QuizSettings {
   questionCount: number;
 }
 
-interface WrongAnswer {
+interface QuizResult {
   question: QuizData;
   userAnswer: number[];
+  isCorrect: boolean;
 }
 
 
@@ -182,7 +183,7 @@ const ToneQuiz: React.FC = () => {
   const [shake, setShake] = useState<boolean>(false);
   const [celebrate, setCelebrate] = useState<boolean>(false);
   const [isGameComplete, setIsGameComplete] = useState<boolean>(false);
-  const [wrongAnswers, setWrongAnswers] = useState<WrongAnswer[]>([]);
+  const [quizResults, setQuizResults] = useState<QuizResult[]>([]);
 
   // 紙吹雪のデータを事前生成（stateベースの種を使用）
   const confettiPieces = useMemo<ConfettiPiece[]>(() => {
@@ -237,7 +238,7 @@ const ToneQuiz: React.FC = () => {
       setShake(false);
       setCelebrate(false);
       setIsGameComplete(false);
-      setWrongAnswers([]);
+      setQuizResults([]);
       setIsSettingMode(false);
     } catch (error) {
       console.error('Error loading quiz data:', error);
@@ -248,14 +249,17 @@ const ToneQuiz: React.FC = () => {
   }, [fetchQuizData]);
 
   const loadNewQuestion = useCallback((newTotal: number = total, isSkipped: boolean = false): void => {
+    // スキップされた問題を記録（ゲーム完了チェックより先に実行）
+    if (isSkipped && currentQuestion) {
+      setQuizResults(prev => {
+        const newResults = [...prev, { question: currentQuestion, userAnswer: [], isCorrect: false }];
+        return newResults;
+      });
+    }
+
     if (newTotal >= settings.questionCount) {
       setIsGameComplete(true);
       return;
-    }
-    
-    // スキップされた問題を記録
-    if (isSkipped && currentQuestion) {
-      setWrongAnswers(prev => [...prev, { question: currentQuestion, userAnswer: [] }]);
     }
     
     const nextQuestions = remainingQuestions.filter(q => q !== currentQuestion);
@@ -297,13 +301,18 @@ const ToneQuiz: React.FC = () => {
       (answer, index) => answer === currentQuestion.tones[index],
     );
 
+    // 結果を記録（正解・不正解問わず）
+    setQuizResults(prev => {
+      const newResults = [...prev, { question: currentQuestion, userAnswer: answers, isCorrect: allCorrect }];
+      console.log('Adding result:', currentQuestion.hanzi, 'isCorrect:', allCorrect, 'total results:', newResults.length);
+      return newResults;
+    });
+
     if (allCorrect) {
       setStreak(streak + 1);
       setCelebrate(true);
       setTimeout(() => setCelebrate(false), 600);
     } else {
-      // 間違えた問題を記録
-      setWrongAnswers(prev => [...prev, { question: currentQuestion, userAnswer: answers }]);
       setStreak(0);
       setShake(true);
       setTimeout(() => setShake(false), 500);
@@ -315,7 +324,15 @@ const ToneQuiz: React.FC = () => {
       const newScore = allCorrect ? score + 1 : score;
       setTotal(newTotal);
       setScore(newScore);
-      loadNewQuestion(newTotal, false);
+      
+      // 最後の問題の場合は直接ゲーム完了
+      if (newTotal >= settings.questionCount) {
+        console.log('Game completed with total results');
+        // 結果記録の完了を待つため少し遅延
+        setTimeout(() => setIsGameComplete(true), 100);
+      } else {
+        loadNewQuestion(newTotal, false);
+      }
     }, 2000);
   };
 
@@ -431,43 +448,62 @@ const ToneQuiz: React.FC = () => {
             <div className="text-sm opacity-90">{settings.level} • {settings.questionCount}問</div>
           </div>
           
-          {/* 間違えた問題一覧 */}
-          {wrongAnswers.length > 0 && (
+          {/* 全結果一覧 */}
+          {quizResults.length > 0 && (
             <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-700 mb-3">間違えた問題</h3>
-              <div className="space-y-3 max-h-[300px] overflow-y-auto">
-                {wrongAnswers.map((wrong, index) => (
-                  <div key={index} className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <h3 className="text-lg font-semibold text-gray-700 mb-3">結果一覧 ({quizResults.length}/{settings.questionCount})</h3>
+              <div className="space-y-3 max-h-[400px] overflow-y-auto">
+                {quizResults.map((result, index) => (
+                  <div key={index} className={`border rounded-lg p-4 ${
+                    result.isCorrect 
+                      ? 'bg-green-50 border-green-200' 
+                      : 'bg-red-50 border-red-200'
+                  }`}>
                     <div className="flex justify-between items-start">
-                      <div>
-                        <span className="text-2xl font-bold text-gray-800">{wrong.question.hanzi}</span>
-                        <span className="ml-3 text-lg text-gray-700">{wrong.question.word}</span>
+                      <div className="flex items-center gap-2">
+                        <div className={`w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold ${
+                          result.isCorrect ? 'bg-green-600' : 'bg-red-600'
+                        }`}>
+                          {result.isCorrect ? '○' : '×'}
+                        </div>
+                        <div>
+                          <span className="text-2xl font-bold text-gray-800">{result.question.hanzi}</span>
+                          <span className="ml-3 text-lg text-gray-700">{result.question.word}</span>
+                        </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-sm text-red-700 font-semibold mb-2">あなたの回答:</div>
+                        <div className={`text-sm font-semibold mb-2 ${
+                          result.isCorrect ? 'text-green-700' : 'text-red-700'
+                        }`}>あなたの回答:</div>
                         <div className="flex gap-1 justify-end mb-3">
-                          {wrong.userAnswer.length === 0 ? (
+                          {result.userAnswer.length === 0 ? (
                             <div className="bg-gray-500 text-white px-2 py-1 rounded text-xs">
                               スキップ
                             </div>
                           ) : (
-                            wrong.userAnswer.map((ans, idx) => (
-                              <div key={idx} className="bg-red-600 text-white px-2 py-1 rounded text-xs flex flex-col items-center">
+                            result.userAnswer.map((ans, idx) => (
+                              <div key={idx} className={`text-white px-2 py-1 rounded text-xs flex flex-col items-center ${
+                                result.isCorrect ? 'bg-green-600' : 'bg-red-600'
+                              }`}>
                                 <ToneMark tone={ans} size={20} color="white" />
                                 <span>{TONE_OPTIONS.find(opt => opt.value === ans)?.label}</span>
                               </div>
                             ))
                           )}
                         </div>
-                        <div className="text-sm text-green-700 font-semibold mb-2">正解:</div>
-                        <div className="flex gap-1 justify-end">
-                          {wrong.question.tones.map((tone, idx) => (
-                            <div key={idx} className="bg-green-600 text-white px-2 py-1 rounded text-xs flex flex-col items-center">
-                              <ToneMark tone={tone} size={20} color="white" />
-                              <span>{TONE_OPTIONS.find(opt => opt.value === tone)?.label}</span>
+                        {!result.isCorrect && (
+                          <>
+                            <div className="text-sm text-green-700 font-semibold mb-2">正解:</div>
+                            <div className="flex gap-1 justify-end">
+                              {result.question.tones.map((tone, idx) => (
+                                <div key={idx} className="bg-green-600 text-white px-2 py-1 rounded text-xs flex flex-col items-center">
+                                  <ToneMark tone={tone} size={20} color="white" />
+                                  <span>{TONE_OPTIONS.find(opt => opt.value === tone)?.label}</span>
+                                </div>
+                              ))}
                             </div>
-                          ))}
-                        </div>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -564,43 +600,34 @@ const ToneQuiz: React.FC = () => {
         }`}
       >
         {/* ヘッダー */}
-        <div className="text-center mb-6 relative">
-          <button
-            onClick={() => setIsSettingMode(true)}
-            className="absolute left-0 top-0 px-3 py-1 text-sm font-semibold border-2 border-gray-500 rounded-lg bg-white text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:border-gray-600 z-10"
-          >
-            ← 設定
-          </button>
-          <h1 className="text-[2rem] font-black text-red-800 mb-3 tracking-[1px] drop-shadow-lg">
-            <span className="text-amber-700">早</span>
-            <span className="text-red-800">押</span>
-            <span className="text-orange-700">し</span>
-            <span className="text-red-700">四</span>
-            <span className="text-amber-800">声</span>
-            <span className="text-orange-800">ク</span>
-            <span className="text-red-800">イ</span>
-            <span className="text-amber-700">ズ</span>
-            <span className="text-2xl ml-2">🎯</span>
-          </h1>
-          <div className="flex justify-center gap-4 text-[0.85rem] text-gray-600 mb-2">
+        <div className="mb-4">
+          <div className="flex justify-between items-start mb-2">
+            <button
+              onClick={() => setIsSettingMode(true)}
+              className="px-2 py-1 text-xs font-semibold border border-gray-400 rounded bg-white text-gray-600 hover:bg-gray-50 transition-all duration-200 z-10 flex-shrink-0"
+            >
+              ← 設定
+            </button>
+            <div className="text-right flex-shrink-0">
+              <div className="text-xs text-gray-500 mb-1">{settings.level}</div>
+              <div className="text-sm text-gray-600">{total + 1}/{settings.questionCount}</div>
+            </div>
+          </div>
+          <div className="flex justify-center gap-3 text-sm text-gray-600">
             <div>
               正解: <strong className="text-red-700">{score}</strong>
-            </div>
-            <div>
-              進行: <strong>{total + 1}/{settings.questionCount}</strong>
             </div>
             <div>
               連続:{' '}
               <strong
                 className={`${
-                  streak >= 3 ? 'text-yellow-600 animate-pulse' : 'text-gray-500'
+                  streak >= 3 ? 'text-yellow-600' : 'text-gray-500'
                 }`}
               >
                 🔥 {streak}
               </strong>
             </div>
           </div>
-          <div className="text-xs text-gray-500">{settings.level}</div>
         </div>
 
         {/* 問題表示 */}
@@ -699,7 +726,8 @@ const ToneQuiz: React.FC = () => {
               setTotal(newTotal);
               loadNewQuestion(newTotal, true);
             }}
-            className="px-6 py-2 text-sm font-semibold border-2 border-red-700 rounded-full bg-white text-red-700 transition-all duration-200 hover:bg-red-700 hover:text-white"
+            disabled={showResult}
+            className="px-6 py-2 text-sm font-semibold border-2 border-red-700 rounded-full bg-white text-red-700 transition-all duration-200 hover:bg-red-700 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
           >
             次の問題へ ⏭
           </button>
