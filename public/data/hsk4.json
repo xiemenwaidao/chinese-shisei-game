@@ -1,0 +1,205 @@
+[
+  {
+    "hanzi": "建议",
+    "pinyin": ["jiàn", "yì"],
+    "pinyinPlain": ["jian", "yi"],
+    "tones": [4, 4],
+    "word": "提案"
+  },
+  {
+    "hanzi": "要求",
+    "pinyin": ["yāo", "qiú"],
+    "pinyinPlain": ["yao", "qiu"],
+    "tones": [1, 2],
+    "word": "要求"
+  },
+  {
+    "hanzi": "原因",
+    "pinyin": ["yuán", "yīn"],
+    "pinyinPlain": ["yuan", "yin"],
+    "tones": [2, 1],
+    "word": "原因"
+  },
+  {
+    "hanzi": "结果",
+    "pinyin": ["jié", "guǒ"],
+    "pinyinPlain": ["jie", "guo"],
+    "tones": [2, 3],
+    "word": "結果"
+  },
+  {
+    "hanzi": "过程",
+    "pinyin": ["guò", "chéng"],
+    "pinyinPlain": ["guo", "cheng"],
+    "tones": [4, 2],
+    "word": "過程"
+  },
+  {
+    "hanzi": "材料",
+    "pinyin": ["cái", "liào"],
+    "pinyinPlain": ["cai", "liao"],
+    "tones": [2, 4],
+    "word": "材料"
+  },
+  {
+    "hanzi": "数据",
+    "pinyin": ["shù", "jù"],
+    "pinyinPlain": ["shu", "ju"],
+    "tones": [4, 4],
+    "word": "データ"
+  },
+  {
+    "hanzi": "信息",
+    "pinyin": ["xìn", "xī"],
+    "pinyinPlain": ["xin", "xi"],
+    "tones": [4, 1],
+    "word": "情報"
+  },
+  {
+    "hanzi": "理论",
+    "pinyin": ["lǐ", "lùn"],
+    "pinyinPlain": ["li", "lun"],
+    "tones": [3, 4],
+    "word": "理論"
+  },
+  {
+    "hanzi": "实践",
+    "pinyin": ["shí", "jiàn"],
+    "pinyinPlain": ["shi", "jian"],
+    "tones": [2, 4],
+    "word": "実践"
+  },
+  {
+    "hanzi": "创新",
+    "pinyin": ["chuàng", "xīn"],
+    "pinyinPlain": ["chuang", "xin"],
+    "tones": [4, 1],
+    "word": "革新"
+  },
+  {
+    "hanzi": "改革",
+    "pinyin": ["gǎi", "gé"],
+    "pinyinPlain": ["gai", "ge"],
+    "tones": [3, 2],
+    "word": "改革"
+  },
+  {
+    "hanzi": "开放",
+    "pinyin": ["kāi", "fàng"],
+    "pinyinPlain": ["kai", "fang"],
+    "tones": [1, 4],
+    "word": "開放"
+  },
+  {
+    "hanzi": "合作",
+    "pinyin": ["hé", "zuò"],
+    "pinyinPlain": ["he", "zuo"],
+    "tones": [2, 4],
+    "word": "協力"
+  },
+  {
+    "hanzi": "竞争",
+    "pinyin": ["jìng", "zhēng"],
+    "pinyinPlain": ["jing", "zheng"],
+    "tones": [4, 1],
+    "word": "競争"
+  },
+  {
+    "hanzi": "基础",
+    "pinyin": ["jī", "chǔ"],
+    "pinyinPlain": ["ji", "chu"],
+    "tones": [1, 3],
+    "word": "基礎"
+  },
+  {
+    "hanzi": "现代",
+    "pinyin": ["xiàn", "dài"],
+    "pinyinPlain": ["xian", "dai"],
+    "tones": [4, 4],
+    "word": "現代"
+  },
+  {
+    "hanzi": "专业",
+    "pinyin": ["zhuān", "yè"],
+    "pinyinPlain": ["zhuan", "ye"],
+    "tones": [1, 4],
+    "word": "専業"
+  },
+  {
+    "hanzi": "产品",
+    "pinyin": ["chǎn", "pǐn"],
+    "pinyinPlain": ["chan", "pin"],
+    "tones": [3, 3],
+    "word": "製品"
+  },
+  {
+    "hanzi": "市场",
+    "pinyin": ["shì", "chǎng"],
+    "pinyinPlain": ["shi", "chang"],
+    "tones": [4, 3],
+    "word": "市場"
+  },
+  {
+    "hanzi": "销售",
+    "pinyin": ["xiāo", "shòu"],
+    "pinyinPlain": ["xiao", "shou"],
+    "tones": [1, 4],
+    "word": "販売"
+  },
+  {
+    "hanzi": "服装",
+    "pinyin": ["fú", "zhuāng"],
+    "pinyinPlain": ["fu", "zhuang"],
+    "tones": [2, 1],
+    "word": "服装"
+  },
+  {
+    "hanzi": "价格",
+    "pinyin": ["jià", "gé"],
+    "pinyinPlain": ["jia", "ge"],
+    "tones": [4, 2],
+    "word": "価格"
+  },
+  {
+    "hanzi": "质量",
+    "pinyin": ["zhì", "liàng"],
+    "pinyinPlain": ["zhi", "liang"],
+    "tones": [4, 4],
+    "word": "品質"
+  },
+  {
+    "hanzi": "投资",
+    "pinyin": ["tóu", "zī"],
+    "pinyinPlain": ["tou", "zi"],
+    "tones": [2, 1],
+    "word": "投資"
+  },
+  {
+    "hanzi": "经营",
+    "pinyin": ["jīng", "yíng"],
+    "pinyinPlain": ["jing", "ying"],
+    "tones": [1, 2],
+    "word": "経営"
+  },
+  {
+    "hanzi": "成功",
+    "pinyin": ["chéng", "gōng"],
+    "pinyinPlain": ["cheng", "gong"],
+    "tones": [2, 1],
+    "word": "成功"
+  },
+  {
+    "hanzi": "高级",
+    "pinyin": ["gāo", "jí"],
+    "pinyinPlain": ["gao", "ji"],
+    "tones": [1, 2],
+    "word": "高級"
+  },
+  {
+    "hanzi": "能力",
+    "pinyin": ["néng", "lì"],
+    "pinyinPlain": ["neng", "li"],
+    "tones": [2, 4],
+    "word": "能力"
+  }
+]

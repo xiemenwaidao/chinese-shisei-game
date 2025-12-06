@@ -1,0 +1,205 @@
+[
+  {
+    "hanzi": "认识",
+    "pinyin": ["rèn", "shi"],
+    "pinyinPlain": ["ren", "shi"],
+    "tones": [4, 0],
+    "word": "認識"
+  },
+  {
+    "hanzi": "深刻",
+    "pinyin": ["shēn", "kè"],
+    "pinyinPlain": ["shen", "ke"],
+    "tones": [1, 4],
+    "word": "深刻"
+  },
+  {
+    "hanzi": "复杂",
+    "pinyin": ["fù", "zá"],
+    "pinyinPlain": ["fu", "za"],
+    "tones": [4, 2],
+    "word": "複雑"
+  },
+  {
+    "hanzi": "抽象",
+    "pinyin": ["chōu", "xiàng"],
+    "pinyinPlain": ["chou", "xiang"],
+    "tones": [1, 4],
+    "word": "抽象"
+  },
+  {
+    "hanzi": "具体",
+    "pinyin": ["jù", "tǐ"],
+    "pinyinPlain": ["ju", "ti"],
+    "tones": [4, 3],
+    "word": "具体"
+  },
+  {
+    "hanzi": "根据",
+    "pinyin": ["gēn", "jù"],
+    "pinyinPlain": ["gen", "ju"],
+    "tones": [1, 4],
+    "word": "根拠"
+  },
+  {
+    "hanzi": "依据",
+    "pinyin": ["yī", "jù"],
+    "pinyinPlain": ["yi", "ju"],
+    "tones": [1, 4],
+    "word": "依拠"
+  },
+  {
+    "hanzi": "证据",
+    "pinyin": ["zhèng", "jù"],
+    "pinyinPlain": ["zheng", "ju"],
+    "tones": [4, 4],
+    "word": "証拠"
+  },
+  {
+    "hanzi": "证明",
+    "pinyin": ["zhèng", "míng"],
+    "pinyinPlain": ["zheng", "ming"],
+    "tones": [4, 2],
+    "word": "証明"
+  },
+  {
+    "hanzi": "论证",
+    "pinyin": ["lùn", "zhèng"],
+    "pinyinPlain": ["lun", "zheng"],
+    "tones": [4, 4],
+    "word": "論証"
+  },
+  {
+    "hanzi": "推理",
+    "pinyin": ["tuī", "lǐ"],
+    "pinyinPlain": ["tui", "li"],
+    "tones": [1, 3],
+    "word": "推理"
+  },
+  {
+    "hanzi": "逻辑",
+    "pinyin": ["luó", "ji"],
+    "pinyinPlain": ["luo", "ji"],
+    "tones": [2, 0],
+    "word": "論理"
+  },
+  {
+    "hanzi": "思维",
+    "pinyin": ["sī", "wéi"],
+    "pinyinPlain": ["si", "wei"],
+    "tones": [1, 2],
+    "word": "思考"
+  },
+  {
+    "hanzi": "哲学",
+    "pinyin": ["zhé", "xué"],
+    "pinyinPlain": ["zhe", "xue"],
+    "tones": [2, 2],
+    "word": "哲学"
+  },
+  {
+    "hanzi": "智慧",
+    "pinyin": ["zhì", "huì"],
+    "pinyinPlain": ["zhi", "hui"],
+    "tones": [4, 4],
+    "word": "知恵"
+  },
+  {
+    "hanzi": "反思",
+    "pinyin": ["fǎn", "sī"],
+    "pinyinPlain": ["fan", "si"],
+    "tones": [3, 1],
+    "word": "反省"
+  },
+  {
+    "hanzi": "传承",
+    "pinyin": ["chuán", "chéng"],
+    "pinyinPlain": ["chuan", "cheng"],
+    "tones": [2, 2],
+    "word": "伝承"
+  },
+  {
+    "hanzi": "创造",
+    "pinyin": ["chuàng", "zào"],
+    "pinyinPlain": ["chuang", "zao"],
+    "tones": [4, 4],
+    "word": "創造"
+  },
+  {
+    "hanzi": "发明",
+    "pinyin": ["fā", "míng"],
+    "pinyinPlain": ["fa", "ming"],
+    "tones": [1, 2],
+    "word": "発明"
+  },
+  {
+    "hanzi": "创新",
+    "pinyin": ["chuàng", "xīn"],
+    "pinyinPlain": ["chuang", "xin"],
+    "tones": [4, 1],
+    "word": "イノベーション"
+  },
+  {
+    "hanzi": "广泛",
+    "pinyin": ["guǎng", "fàn"],
+    "pinyinPlain": ["guang", "fan"],
+    "tones": [3, 4],
+    "word": "幅広い"
+  },
+  {
+    "hanzi": "普及",
+    "pinyin": ["pǔ", "jí"],
+    "pinyinPlain": ["pu", "ji"],
+    "tones": [3, 2],
+    "word": "普及"
+  },
+  {
+    "hanzi": "积极",
+    "pinyin": ["jī", "jí"],
+    "pinyinPlain": ["ji", "ji"],
+    "tones": [1, 2],
+    "word": "積極的"
+  },
+  {
+    "hanzi": "有效",
+    "pinyin": ["yǒu", "xiào"],
+    "pinyinPlain": ["you", "xiao"],
+    "tones": [3, 4],
+    "word": "有効"
+  },
+  {
+    "hanzi": "终究",
+    "pinyin": ["zhōng", "jiū"],
+    "pinyinPlain": ["zhong", "jiu"],
+    "tones": [1, 1],
+    "word": "結局"
+  },
+  {
+    "hanzi": "究竟",
+    "pinyin": ["jiū", "jìng"],
+    "pinyinPlain": ["jiu", "jing"],
+    "tones": [1, 4],
+    "word": "究極"
+  },
+  {
+    "hanzi": "此外",
+    "pinyin": ["cǐ", "wài"],
+    "pinyinPlain": ["ci", "wai"],
+    "tones": [3, 4],
+    "word": "その他"
+  },
+  {
+    "hanzi": "没有",
+    "pinyin": ["méi", "yǒu"],
+    "pinyinPlain": ["mei", "you"],
+    "tones": [2, 3],
+    "word": "ない"
+  },
+  {
+    "hanzi": "这些",
+    "pinyin": ["zhè", "xiē"],
+    "pinyinPlain": ["zhe", "xie"],
+    "tones": [4, 1],
+    "word": "これら"
+  }
+]

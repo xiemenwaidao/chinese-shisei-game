@@ -1,0 +1,205 @@
+[
+  {
+    "hanzi": "你好",
+    "pinyin": ["nǐ", "hǎo"],
+    "pinyinPlain": ["ni", "hao"],
+    "tones": [3, 3],
+    "word": "こんにちは"
+  },
+  {
+    "hanzi": "谢谢",
+    "pinyin": ["xiè", "xie"],
+    "pinyinPlain": ["xie", "xie"],
+    "tones": [4, 0],
+    "word": "ありがとう"
+  },
+  {
+    "hanzi": "中国",
+    "pinyin": ["zhōng", "guó"],
+    "pinyinPlain": ["zhong", "guo"],
+    "tones": [1, 2],
+    "word": "中国"
+  },
+  {
+    "hanzi": "学习",
+    "pinyin": ["xué", "xí"],
+    "pinyinPlain": ["xue", "xi"],
+    "tones": [2, 2],
+    "word": "勉強する"
+  },
+  {
+    "hanzi": "咖啡",
+    "pinyin": ["kā", "fēi"],
+    "pinyinPlain": ["ka", "fei"],
+    "tones": [1, 1],
+    "word": "コーヒー"
+  },
+  {
+    "hanzi": "明天",
+    "pinyin": ["míng", "tiān"],
+    "pinyinPlain": ["ming", "tian"],
+    "tones": [2, 1],
+    "word": "明日"
+  },
+  {
+    "hanzi": "喜欢",
+    "pinyin": ["xǐ", "huan"],
+    "pinyinPlain": ["xi", "huan"],
+    "tones": [3, 0],
+    "word": "好き"
+  },
+  {
+    "hanzi": "朋友",
+    "pinyin": ["péng", "you"],
+    "pinyinPlain": ["peng", "you"],
+    "tones": [2, 0],
+    "word": "友達"
+  },
+  {
+    "hanzi": "东西",
+    "pinyin": ["dōng", "xi"],
+    "pinyinPlain": ["dong", "xi"],
+    "tones": [1, 0],
+    "word": "物"
+  },
+  {
+    "hanzi": "时候",
+    "pinyin": ["shí", "hou"],
+    "pinyinPlain": ["shi", "hou"],
+    "tones": [2, 0],
+    "word": "時"
+  },
+  {
+    "hanzi": "家",
+    "pinyin": ["jiā"],
+    "pinyinPlain": ["jia"],
+    "tones": [1],
+    "word": "家"
+  },
+  {
+    "hanzi": "人",
+    "pinyin": ["rén"],
+    "pinyinPlain": ["ren"],
+    "tones": [2],
+    "word": "人"
+  },
+  {
+    "hanzi": "书",
+    "pinyin": ["shū"],
+    "pinyinPlain": ["shu"],
+    "tones": [1],
+    "word": "本"
+  },
+  {
+    "hanzi": "水",
+    "pinyin": ["shuǐ"],
+    "pinyinPlain": ["shui"],
+    "tones": [3],
+    "word": "水"
+  },
+  {
+    "hanzi": "饭",
+    "pinyin": ["fàn"],
+    "pinyinPlain": ["fan"],
+    "tones": [4],
+    "word": "ご飯"
+  },
+  {
+    "hanzi": "小",
+    "pinyin": ["xiǎo"],
+    "pinyinPlain": ["xiao"],
+    "tones": [3],
+    "word": "小さい"
+  },
+  {
+    "hanzi": "大",
+    "pinyin": ["dà"],
+    "pinyinPlain": ["da"],
+    "tones": [4],
+    "word": "大きい"
+  },
+  {
+    "hanzi": "好的",
+    "pinyin": ["hǎo", "de"],
+    "pinyinPlain": ["hao", "de"],
+    "tones": [3, 0],
+    "word": "はい"
+  },
+  {
+    "hanzi": "老师",
+    "pinyin": ["lǎo", "shī"],
+    "pinyinPlain": ["lao", "shi"],
+    "tones": [3, 1],
+    "word": "先生"
+  },
+  {
+    "hanzi": "学生",
+    "pinyin": ["xué", "shēng"],
+    "pinyinPlain": ["xue", "sheng"],
+    "tones": [2, 1],
+    "word": "学生"
+  },
+  {
+    "hanzi": "工作",
+    "pinyin": ["gōng", "zuò"],
+    "pinyinPlain": ["gong", "zuo"],
+    "tones": [1, 4],
+    "word": "仕事"
+  },
+  {
+    "hanzi": "名字",
+    "pinyin": ["míng", "zi"],
+    "pinyinPlain": ["ming", "zi"],
+    "tones": [2, 0],
+    "word": "名前"
+  },
+  {
+    "hanzi": "女人",
+    "pinyin": ["nǚ", "rén"],
+    "pinyinPlain": ["nv", "ren"],
+    "tones": [3, 2],
+    "word": "女性"
+  },
+  {
+    "hanzi": "男人",
+    "pinyin": ["nán", "rén"],
+    "pinyinPlain": ["nan", "ren"],
+    "tones": [2, 2],
+    "word": "男性"
+  },
+  {
+    "hanzi": "多少",
+    "pinyin": ["duō", "shao"],
+    "pinyinPlain": ["duo", "shao"],
+    "tones": [1, 0],
+    "word": "いくら"
+  },
+  {
+    "hanzi": "几个",
+    "pinyin": ["jǐ", "ge"],
+    "pinyinPlain": ["ji", "ge"],
+    "tones": [3, 0],
+    "word": "いくつ"
+  },
+  {
+    "hanzi": "今天",
+    "pinyin": ["jīn", "tiān"],
+    "pinyinPlain": ["jin", "tian"],
+    "tones": [1, 1],
+    "word": "今日"
+  },
+  {
+    "hanzi": "昨天",
+    "pinyin": ["zuó", "tiān"],
+    "pinyinPlain": ["zuo", "tian"],
+    "tones": [2, 1],
+    "word": "昨日"
+  },
+  {
+    "hanzi": "年",
+    "pinyin": ["nián"],
+    "pinyinPlain": ["nian"],
+    "tones": [2],
+    "word": "年"
+  }
+]

@@ -1,0 +1,205 @@
+[
+  {
+    "hanzi": "概念",
+    "pinyin": ["gài", "niàn"],
+    "pinyinPlain": ["gai", "nian"],
+    "tones": [4, 4],
+    "word": "概念"
+  },
+  {
+    "hanzi": "现象",
+    "pinyin": ["xiàn", "xiàng"],
+    "pinyinPlain": ["xian", "xiang"],
+    "tones": [4, 4],
+    "word": "現象"
+  },
+  {
+    "hanzi": "原则",
+    "pinyin": ["yuán", "zé"],
+    "pinyinPlain": ["yuan", "ze"],
+    "tones": [2, 2],
+    "word": "原則"
+  },
+  {
+    "hanzi": "标准",
+    "pinyin": ["biāo", "zhǔn"],
+    "pinyinPlain": ["biao", "zhun"],
+    "tones": [1, 3],
+    "word": "基準"
+  },
+  {
+    "hanzi": "规律",
+    "pinyin": ["guī", "lǜ"],
+    "pinyinPlain": ["gui", "lv"],
+    "tones": [1, 4],
+    "word": "法則"
+  },
+  {
+    "hanzi": "态度",
+    "pinyin": ["tài", "dù"],
+    "pinyinPlain": ["tai", "du"],
+    "tones": [4, 4],
+    "word": "態度"
+  },
+  {
+    "hanzi": "观念",
+    "pinyin": ["guān", "niàn"],
+    "pinyinPlain": ["guan", "nian"],
+    "tones": [1, 4],
+    "word": "観念"
+  },
+  {
+    "hanzi": "价值",
+    "pinyin": ["jià", "zhí"],
+    "pinyinPlain": ["jia", "zhi"],
+    "tones": [4, 2],
+    "word": "価値"
+  },
+  {
+    "hanzi": "目标",
+    "pinyin": ["mù", "biāo"],
+    "pinyinPlain": ["mu", "biao"],
+    "tones": [4, 1],
+    "word": "目標"
+  },
+  {
+    "hanzi": "策略",
+    "pinyin": ["cè", "lüè"],
+    "pinyinPlain": ["ce", "lue"],
+    "tones": [4, 4],
+    "word": "戦略"
+  },
+  {
+    "hanzi": "效率",
+    "pinyin": ["xiào", "lǜ"],
+    "pinyinPlain": ["xiao", "lv"],
+    "tones": [4, 4],
+    "word": "効率"
+  },
+  {
+    "hanzi": "质量",
+    "pinyin": ["zhì", "liàng"],
+    "pinyinPlain": ["zhi", "liang"],
+    "tones": [4, 4],
+    "word": "品質"
+  },
+  {
+    "hanzi": "数量",
+    "pinyin": ["shù", "liàng"],
+    "pinyinPlain": ["shu", "liang"],
+    "tones": [4, 4],
+    "word": "数量"
+  },
+  {
+    "hanzi": "规模",
+    "pinyin": ["guī", "mó"],
+    "pinyinPlain": ["gui", "mo"],
+    "tones": [1, 2],
+    "word": "規模"
+  },
+  {
+    "hanzi": "范围",
+    "pinyin": ["fàn", "wéi"],
+    "pinyinPlain": ["fan", "wei"],
+    "tones": [4, 2],
+    "word": "範囲"
+  },
+  {
+    "hanzi": "理念",
+    "pinyin": ["lǐ", "niàn"],
+    "pinyinPlain": ["li", "nian"],
+    "tones": [3, 4],
+    "word": "理念"
+  },
+  {
+    "hanzi": "思想",
+    "pinyin": ["sī", "xiǎng"],
+    "pinyinPlain": ["si", "xiang"],
+    "tones": [1, 3],
+    "word": "思想"
+  },
+  {
+    "hanzi": "传播",
+    "pinyin": ["chuán", "bō"],
+    "pinyinPlain": ["chuan", "bo"],
+    "tones": [2, 1],
+    "word": "伝播"
+  },
+  {
+    "hanzi": "影响",
+    "pinyin": ["yǐng", "xiǎng"],
+    "pinyinPlain": ["ying", "xiang"],
+    "tones": [3, 3],
+    "word": "影響"
+  },
+  {
+    "hanzi": "推广",
+    "pinyin": ["tuī", "guǎng"],
+    "pinyinPlain": ["tui", "guang"],
+    "tones": [1, 3],
+    "word": "推広"
+  },
+  {
+    "hanzi": "批评",
+    "pinyin": ["pī", "píng"],
+    "pinyinPlain": ["pi", "ping"],
+    "tones": [1, 2],
+    "word": "批判"
+  },
+  {
+    "hanzi": "理解",
+    "pinyin": ["lǐ", "jiě"],
+    "pinyinPlain": ["li", "jie"],
+    "tones": [3, 3],
+    "word": "理解"
+  },
+  {
+    "hanzi": "建设",
+    "pinyin": ["jiàn", "shè"],
+    "pinyinPlain": ["jian", "she"],
+    "tones": [4, 4],
+    "word": "建設"
+  },
+  {
+    "hanzi": "案例",
+    "pinyin": ["'n", "lì"],
+    "pinyinPlain": ["an", "li"],
+    "tones": [4, 4],
+    "word": "事例"
+  },
+  {
+    "hanzi": "选择",
+    "pinyin": ["xuǎn", "zé"],
+    "pinyinPlain": ["xuan", "ze"],
+    "tones": [3, 2],
+    "word": "選択"
+  },
+  {
+    "hanzi": "讨论",
+    "pinyin": ["tǎo", "lùn"],
+    "pinyinPlain": ["tao", "lun"],
+    "tones": [3, 4],
+    "word": "議論"
+  },
+  {
+    "hanzi": "决定",
+    "pinyin": ["jué", "dìng"],
+    "pinyinPlain": ["jue", "ding"],
+    "tones": [2, 4],
+    "word": "決定"
+  },
+  {
+    "hanzi": "安排",
+    "pinyin": ["'n", "pái"],
+    "pinyinPlain": ["an", "pai"],
+    "tones": [1, 2],
+    "word": "手配"
+  },
+  {
+    "hanzi": "计划",
+    "pinyin": ["jì", "huà"],
+    "pinyinPlain": ["ji", "hua"],
+    "tones": [4, 4],
+    "word": "計划"
+  }
+]

@@ -1,0 +1,205 @@
+[
+  {
+    "hanzi": "准备",
+    "pinyin": ["zhǔn", "bèi"],
+    "pinyinPlain": ["zhun", "bei"],
+    "tones": [3, 4],
+    "word": "準備"
+  },
+  {
+    "hanzi": "决定",
+    "pinyin": ["jué", "dìng"],
+    "pinyinPlain": ["jue", "ding"],
+    "tones": [2, 4],
+    "word": "決定"
+  },
+  {
+    "hanzi": "影响",
+    "pinyin": ["yǐng", "xiǎng"],
+    "pinyinPlain": ["ying", "xiang"],
+    "tones": [3, 3],
+    "word": "影響"
+  },
+  {
+    "hanzi": "发展",
+    "pinyin": ["fā", "zhǎn"],
+    "pinyinPlain": ["fa", "zhan"],
+    "tones": [1, 3],
+    "word": "発展"
+  },
+  {
+    "hanzi": "联系",
+    "pinyin": ["lián", "xì"],
+    "pinyinPlain": ["lian", "xi"],
+    "tones": [2, 4],
+    "word": "連絡"
+  },
+  {
+    "hanzi": "关系",
+    "pinyin": ["guān", "xì"],
+    "pinyinPlain": ["guan", "xi"],
+    "tones": [1, 4],
+    "word": "関係"
+  },
+  {
+    "hanzi": "经验",
+    "pinyin": ["jīng", "yàn"],
+    "pinyinPlain": ["jing", "yan"],
+    "tones": [1, 4],
+    "word": "経験"
+  },
+  {
+    "hanzi": "历史",
+    "pinyin": ["lì", "shǐ"],
+    "pinyinPlain": ["li", "shi"],
+    "tones": [4, 3],
+    "word": "歴史"
+  },
+  {
+    "hanzi": "文化",
+    "pinyin": ["wén", "huà"],
+    "pinyinPlain": ["wen", "hua"],
+    "tones": [2, 4],
+    "word": "文化"
+  },
+  {
+    "hanzi": "环境",
+    "pinyin": ["huán", "jìng"],
+    "pinyinPlain": ["huan", "jing"],
+    "tones": [2, 4],
+    "word": "環境"
+  },
+  {
+    "hanzi": "技术",
+    "pinyin": ["jì", "shù"],
+    "pinyinPlain": ["ji", "shu"],
+    "tones": [4, 4],
+    "word": "技術"
+  },
+  {
+    "hanzi": "科学",
+    "pinyin": ["kē", "xué"],
+    "pinyinPlain": ["ke", "xue"],
+    "tones": [1, 2],
+    "word": "科学"
+  },
+  {
+    "hanzi": "经济",
+    "pinyin": ["jīng", "jì"],
+    "pinyinPlain": ["jing", "ji"],
+    "tones": [1, 4],
+    "word": "経済"
+  },
+  {
+    "hanzi": "政治",
+    "pinyin": ["zhèng", "zhì"],
+    "pinyinPlain": ["zheng", "zhi"],
+    "tones": [4, 4],
+    "word": "政治"
+  },
+  {
+    "hanzi": "教育",
+    "pinyin": ["jiào", "yù"],
+    "pinyinPlain": ["jiao", "yu"],
+    "tones": [4, 4],
+    "word": "教育"
+  },
+  {
+    "hanzi": "研究",
+    "pinyin": ["yán", "jiū"],
+    "pinyinPlain": ["yan", "jiu"],
+    "tones": [2, 1],
+    "word": "研究"
+  },
+  {
+    "hanzi": "提高",
+    "pinyin": ["tí", "gāo"],
+    "pinyinPlain": ["ti", "gao"],
+    "tones": [2, 1],
+    "word": "向上"
+  },
+  {
+    "hanzi": "实际",
+    "pinyin": ["shí", "jì"],
+    "pinyinPlain": ["shi", "ji"],
+    "tones": [2, 4],
+    "word": "実際"
+  },
+  {
+    "hanzi": "设计",
+    "pinyin": ["shè", "jì"],
+    "pinyinPlain": ["she", "ji"],
+    "tones": [4, 4],
+    "word": "設計"
+  },
+  {
+    "hanzi": "象征",
+    "pinyin": ["xiàng", "zhēng"],
+    "pinyinPlain": ["xiang", "zheng"],
+    "tones": [4, 1],
+    "word": "象徴"
+  },
+  {
+    "hanzi": "民族",
+    "pinyin": ["mín", "zú"],
+    "pinyinPlain": ["min", "zu"],
+    "tones": [2, 2],
+    "word": "民族"
+  },
+  {
+    "hanzi": "社会",
+    "pinyin": ["shè", "huì"],
+    "pinyinPlain": ["she", "hui"],
+    "tones": [4, 4],
+    "word": "社会"
+  },
+  {
+    "hanzi": "国家",
+    "pinyin": ["guó", "jiā"],
+    "pinyinPlain": ["guo", "jia"],
+    "tones": [2, 1],
+    "word": "国家"
+  },
+  {
+    "hanzi": "问题",
+    "pinyin": ["wèn", "tí"],
+    "pinyinPlain": ["wen", "ti"],
+    "tones": [4, 2],
+    "word": "問題"
+  },
+  {
+    "hanzi": "业务",
+    "pinyin": ["yè", "wù"],
+    "pinyinPlain": ["ye", "wu"],
+    "tones": [4, 4],
+    "word": "業務"
+  },
+  {
+    "hanzi": "服务",
+    "pinyin": ["fú", "wù"],
+    "pinyinPlain": ["fu", "wu"],
+    "tones": [2, 4],
+    "word": "サービス"
+  },
+  {
+    "hanzi": "管理",
+    "pinyin": ["guǎn", "lǐ"],
+    "pinyinPlain": ["guan", "li"],
+    "tones": [3, 3],
+    "word": "管理"
+  },
+  {
+    "hanzi": "传统",
+    "pinyin": ["chuán", "tǒng"],
+    "pinyinPlain": ["chuan", "tong"],
+    "tones": [2, 3],
+    "word": "伝統"
+  },
+  {
+    "hanzi": "来自",
+    "pinyin": ["lái", "zì"],
+    "pinyinPlain": ["lai", "zi"],
+    "tones": [2, 4],
+    "word": "由来"
+  }
+]
